@@ -15,10 +15,14 @@ options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("-incognito")
 service = ChromeService(executable_path='Path_to_chromedriver')
 driver = webdriver.Chrome(service=service, options=options)
+#asks the user for the number of times they want to fill out the form
+fills = int(input("how many times do you want to fill the form out? "))
+fills = fills + 1
 #separates the whole process into a function that can be run multiple times
 def all():
-  #This prints the title of the page as a test that the URL is good
+  #designates the url of the form being filled out
   driver.get("https://docs.google.com/forms/d/e/1FAIpQLSdBt1_lZ6PwozDEBVuUxl50EwEmKW6cKs9gwEpUvMiCkMky3Q/viewform")
+  #This prints the title of the page as a test that the URL is good
   print(driver.title)
   #This located all available checkboxes on the form
   checkbox1 = driver.find_element(By.CLASS_NAME, "D8bnZd")
@@ -43,7 +47,7 @@ def all():
   #finds and clicks the "submit another form button at the end
   resubmitbutton = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/div[4]/a")
   resubmitbutton.click()
-# for loop that submits the form as many times as listed
-for i in range(10):
+# for loop that submits the form as many times as directed
+for i in range(fills):
   all()
 
